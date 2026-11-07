@@ -1,3 +1,11 @@
+# Code Review with AI Agents
+
+## When to use this
+
+Use this playbook when reviewing a pull request with AI agents or setting up a review workflow. The source notes describe practices from the Claude Code team and the presenter. The rollout steps give suggested defaults for adopting the workflow.
+
+## Playbook for an agentic code review pipeline
+
 Playbook for an agentic code review pipeline
 Give the coding agent a way to prove its work, have independent agents challenge it, and route human review by the consequences of a bad merge. Then make the change easy to detect and undo if it breaks in production.
 
@@ -46,4 +54,7 @@ How I’d roll this out on one repo
 1. Keep the current approval rules. Add the PR evidence template, a fresh-context reviewer, and a separate security pass. Run them on real PRs while collecting feedback on which findings were useful.
 2. Tune the review before making it a gate. Add repo-specific failure examples, filter noise, and test against past incidents and known-clean PRs. Then require resolution of verified blocking findings.
 3. Automate the narrowest merge path first. Start with clearly low-risk changes from trusted authors once CI, merge queue checks, and rollback are in place. Expand eligibility when review wait time improves and revert and incident rates hold steady.
-For a backend repo, a good first comparison is a docs-only PR versus a Kafka retry change. The first tests whether the pipeline can stay quiet on a clean change. The second tests whether it can trace a real failure across boundaries, such as a publish succeeding before a retry and causing duplicate downstream processing. That gives you two concrete cases to evaluate before tuning the pipeline for higher volume.
+For a backend repo, a good first comparison is a docs-only PR versus a Kafka retry change. The first tests whether the pipeline can stay quiet on a clean change. The second tests whether it can trace a real failure across boundaries, such as a publish succeeding before a retry and causing duplicate downstream processing. That gives you two concrete cases to evaluate before tuning the pipeline for higher volume.## Sources
+
+- [Claude Code team article](https://claude.dev/blog/solving-code-review-at-anthropic/)
+- [Video discussion](https://www.youtube.com/watch?v=4m8mq42M_3E)
